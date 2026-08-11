@@ -31,8 +31,8 @@ export default function GenerativeVisual({ className }: GenerativeVisualProps) {
 
     const palette = () => ({
       node: "hsl(210, 100%, 88%)",
-      line: "hsl(217, 95%, 78%)",
-      pulse: "hsl(217, 95%, 88%)",
+      line: "hsl(48, 100%, 66%)",
+      pulse: "hsl(48, 100%, 80%)",
     });
 
     const count = 64;
