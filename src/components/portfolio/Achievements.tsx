@@ -33,7 +33,7 @@ const achievementsData = [
   },
 ];
 
-const CARD_WIDTH = 540;
+const CARD_WIDTH = 660;
 const GAP = 24;
 const ITEM_TOTAL = CARD_WIDTH + GAP;
 const SPEED = 120;
@@ -152,7 +152,7 @@ const Achievements = () => {
               Some are these and counting...
             </p>
             <div
-              className="relative w-full max-w-4xl mx-auto"
+              className="relative w-full max-w-6xl mx-auto"
               onMouseEnter={handleEnter}
               onMouseLeave={handleLeave}
             >
@@ -191,7 +191,7 @@ const Achievements = () => {
                             aria-label={`View LinkedIn post: ${achievement.title}`}
                             className="relative mx-3 flex h-[180px] w-full rounded-lg border-l-2 border-l-accent border-y border-border border-r-2 border-r-accent bg-background overflow-visible transition-[box-shadow,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/card:shadow-2xl"
                           >
-                            <div className="relative w-[240px] h-full flex-shrink-0 rounded-l-lg overflow-hidden transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] origin-right group-hover/card:scale-[1.7] group-hover/card:rounded-lg group-hover/card:shadow-2xl group-hover/card:z-10">
+                            <div className="relative w-[260px] h-full flex-shrink-0 rounded-l-lg overflow-hidden transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] origin-bottom-left group-hover/card:scale-[1.35] group-hover/card:-translate-y-[84px] group-hover/card:rounded-lg group-hover/card:shadow-2xl group-hover/card:z-10">
                               <LoadingImage src={achievement.image} alt={achievement.title} rounded="rounded-none" />
                               <span className="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-center gap-1.5 bg-black/35 py-1 text-[9px] font-medium uppercase tracking-[0.14em] text-white/85 opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover/card:opacity-100">
                                 <Linkedin size={9} />
@@ -255,7 +255,7 @@ const Achievements = () => {
                             <Linkedin size={16} />
                           </span>
                           <div className="flex flex-col md:flex-row h-auto min-h-[240px] md:min-h-[182px]">
-                            <div className="relative w-full h-[220px] md:w-[240px] md:h-[182px] flex-shrink-0 rounded-t-xl md:rounded-l-xl md:rounded-tr-none overflow-hidden transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] origin-center group-hover/card:scale-[1.3] group-hover/card:rounded-xl group-hover/card:shadow-2xl group-hover/card:z-10">
+                            <div className="relative w-full h-[220px] md:w-[260px] md:h-[182px] flex-shrink-0 rounded-t-xl md:rounded-l-xl md:rounded-tr-none overflow-hidden transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] origin-bottom-left md:origin-right group-hover/card:scale-[1.2] group-hover/card:rounded-xl group-hover/card:shadow-2xl group-hover/card:z-10">
                               <LoadingImage src={achievement.image} alt={achievement.title} rounded="rounded-none" />
                               <span className="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-center gap-1.5 bg-black/35 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-white/85 opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover/card:opacity-100">
                                 <Linkedin size={10} />
