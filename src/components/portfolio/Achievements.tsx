@@ -255,7 +255,7 @@ const Achievements = () => {
                             <Linkedin size={16} />
                           </span>
                           <div className="flex flex-col md:flex-row h-auto min-h-[240px] md:min-h-[182px]">
-                            <div className="relative w-full h-[220px] md:w-[240px] md:h-[182px] flex-shrink-0 rounded-t-xl md:rounded-l-xl md:rounded-tr-none overflow-hidden transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] origin-center group-hover/card:scale-[1.3] group-hover/card:rounded-xl group-hover/card:shadow-2xl group-hover/card:z-10">
+                            <div className="relative w-full h-[220px] md:w-[260px] md:h-[182px] flex-shrink-0 rounded-t-xl md:rounded-l-xl md:rounded-tr-none overflow-hidden transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] origin-bottom-left md:origin-right group-hover/card:scale-[1.2] group-hover/card:rounded-xl group-hover/card:shadow-2xl group-hover/card:z-10">
                               <LoadingImage src={achievement.image} alt={achievement.title} rounded="rounded-none" />
                               <span className="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-center gap-1.5 bg-black/35 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-white/85 opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover/card:opacity-100">
                                 <Linkedin size={10} />
