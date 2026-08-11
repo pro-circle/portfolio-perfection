@@ -77,26 +77,26 @@ vars stay on the server.
 4. Every push to the tracked branch triggers a build + rollout. No
    manual deploy step is required.
 
-### 4b. Firebase Hosting (static / SPA-only fallback)
+### 4b. Firebase Hosting on the free Spark plan (static `dist/client`)
 
-Firebase Hosting alone cannot execute the SSR worker, so this path
-serves the client bundle only. Use it for a quick static preview; use
-App Hosting for anything real.
+Spark-plan Hosting serves static files only, so this path ships the client
+bundle plus prerendered HTML. Everything in this portfolio is client-side,
+so it works fully.
 
 `firebase.json` is preconfigured to:
-- run `npm run build` before deploy
+- run `npm run build:static` before deploy (build + prerender)
 - serve from `dist/client`
 - SPA fallback (`**` → `/index.html`) so deep links work
 - long cache headers on JS/CSS/fonts/images, no-cache on `index.html`
 
-Note: TanStack Start does not emit a static home page by default, so
-`scripts/prerender.mjs` creates `dist/client/index.html` after the build.
-Prefer 4a for full SSR; Hosting is a static fallback.
+`scripts/prerender.mjs` writes `dist/client/index.html` and
+`dist/client/hobbies/index.html` after the build so crawlers get real HTML.
 
 ```bash
-bun run build
+bun run build:static          # or: npm run build:static
 firebase deploy --only hosting
 ```
+
 
 ### Environment variables on Firebase Hosting (static path)
 
