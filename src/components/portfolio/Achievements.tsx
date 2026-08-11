@@ -37,7 +37,7 @@ const CARD_WIDTH = 660;
 const GAP = 24;
 const ITEM_TOTAL = CARD_WIDTH + GAP;
 const SPEED = 120;
-const COMPACT_HEIGHT = 360;
+const COMPACT_HEIGHT = 260;
 
 
 const Achievements = () => {
@@ -172,7 +172,7 @@ const Achievements = () => {
                     isExpanded ? "opacity-0 pointer-events-none" : "opacity-100"
                   }`}
                 >
-                  <div className="relative w-full h-[360px] rounded-xl border border-white/25 bg-card overflow-visible">
+                  <div className="relative w-full h-[260px] rounded-xl border border-white/25 bg-card overflow-visible">
                     <div className="relative w-full h-full overflow-visible">
                       {renderCards().map(({ achievement, position }, i) => (
                         <div
@@ -191,7 +191,7 @@ const Achievements = () => {
                             aria-label={`View LinkedIn post: ${achievement.title}`}
                             className="relative mx-3 flex h-[180px] w-full rounded-lg border-l-2 border-l-accent border-y border-border border-r-2 border-r-accent bg-background overflow-visible transition-[box-shadow,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/card:shadow-2xl"
                           >
-                            <div className="relative w-[260px] h-full flex-shrink-0 rounded-l-lg overflow-hidden transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] origin-bottom-left group-hover/card:scale-[1.35] group-hover/card:-translate-y-[84px] group-hover/card:rounded-lg group-hover/card:shadow-2xl group-hover/card:z-10">
+                            <div className="relative w-[260px] h-full flex-shrink-0 rounded-l-lg overflow-hidden transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] origin-bottom-left group-hover/card:scale-[1.35] group-hover/card:-translate-y-[64px] group-hover/card:rounded-lg group-hover/card:shadow-2xl group-hover/card:z-10">
                               <LoadingImage src={achievement.image} alt={achievement.title} rounded="rounded-none" />
                               <span className="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-center gap-1.5 bg-black/35 py-1 text-[9px] font-medium uppercase tracking-[0.14em] text-white/85 opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover/card:opacity-100">
                                 <Linkedin size={9} />
