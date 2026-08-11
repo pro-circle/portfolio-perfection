@@ -5,7 +5,7 @@ import { access, cp, mkdir, rm, writeFile } from "node:fs/promises";
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const ROUTES = ["/"];
+const ROUTES = ["/", "/hobbies"];
 const FIREBASE_DIR = new URL("../dist/client/", import.meta.url);
 
 const OUTPUT_CANDIDATES = [
