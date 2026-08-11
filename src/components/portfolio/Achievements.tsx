@@ -172,7 +172,7 @@ const Achievements = () => {
                     isExpanded ? "opacity-0 pointer-events-none" : "opacity-100"
                   }`}
                 >
-                  <div className="relative w-full h-[360px] rounded-xl border border-white/25 bg-card overflow-visible">
+                  <div className="relative w-full h-[260px] rounded-xl border border-white/25 bg-card overflow-visible">
                     <div className="relative w-full h-full overflow-visible">
                       {renderCards().map(({ achievement, position }, i) => (
                         <div
