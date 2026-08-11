@@ -37,7 +37,7 @@ const CARD_WIDTH = 660;
 const GAP = 24;
 const ITEM_TOTAL = CARD_WIDTH + GAP;
 const SPEED = 120;
-const COMPACT_HEIGHT = 360;
+const COMPACT_HEIGHT = 260;
 
 
 const Achievements = () => {
