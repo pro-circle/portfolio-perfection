@@ -122,6 +122,23 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
+  // Visitor analytics — no-ops gracefully when Supabase env vars are absent.
+  useEffect(() => {
+    let cancelled = false;
+    void (async () => {
+      const { isSupabaseConfigured, getOrCreateVisitorId } = await import("@/lib/supabase");
+      if (cancelled || !isSupabaseConfigured) return;
+      try {
+        await getOrCreateVisitorId();
+      } catch (e) {
+        console.warn("Visitor tracking skipped:", e);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   useEffect(() => {
     const onContext = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;
