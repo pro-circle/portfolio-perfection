@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "predeploy": ["npm run build"],
+    "predeploy": ["npm run build:static"],
     "public": "dist/client",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "cleanUrls": true,

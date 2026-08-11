@@ -39,9 +39,9 @@ const LoadingImage = ({
         {...imgProps}
         ref={imgRef}
         alt={alt}
-        loading="eager"
-        decoding="async"
-        fetchPriority="high"
+        loading={imgProps.loading ?? "lazy"}
+        decoding={imgProps.decoding ?? "async"}
+        fetchPriority={imgProps.fetchPriority ?? "auto"}
         onLoad={(e) => {
           setLoaded(true);
           onLoad?.(e);
