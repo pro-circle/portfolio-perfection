@@ -5,6 +5,47 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import StreamText from "./StreamText";
 import ProfilePhoto from "./ProfilePhoto";
 
+const GlowingStars = () => {
+  const stars = [
+    { top: "12%", left: "8%", size: 2, delay: 0 },
+    { top: "22%", right: "10%", size: 3, delay: 1.2 },
+    { top: "45%", left: "4%", size: 2, delay: 2.4 },
+    { top: "58%", right: "6%", size: 3, delay: 0.8 },
+    { bottom: "28%", left: "12%", size: 2, delay: 1.8 },
+    { bottom: "18%", right: "15%", size: 2, delay: 3.2 },
+    { top: "36%", left: "18%", size: 2, delay: 2.0 },
+  ];
+
+  return (
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+      {stars.map((star, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, scale: 0.6 }}
+          animate={{ opacity: [0.35, 0.85, 0.35], scale: [1, 1.2, 1] }}
+          transition={{
+            duration: 3 + Math.random() * 2,
+            repeat: Infinity,
+            delay: star.delay,
+            ease: "easeInOut",
+          }}
+          className="absolute rounded-full"
+          style={{
+            width: star.size,
+            height: star.size,
+            top: star.top,
+            left: star.left,
+            right: star.right,
+            bottom: star.bottom,
+            backgroundColor: "hsl(var(--accent))",
+            boxShadow: "0 0 6px 1px hsl(var(--accent) / 0.55), 0 0 14px 2px hsl(var(--accent) / 0.25)",
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center section-padding pt-28 lg:pt-32 overflow-hidden">
