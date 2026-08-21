@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Briefcase } from "lucide-react";
 import { useEffect } from "react";
-import { experienceData, getExperienceBySlug } from "@/data/experience";
+import { experienceData, getExperienceBySlug, type ExperienceItem } from "@/data/experience";
 import ThemeToggle from "@/components/portfolio/ThemeToggle";
 import { blockSectionGenerationOnce } from "@/hooks/use-section-generating";
 import ZoomableImage from "@/components/portfolio/ZoomableImage";
@@ -34,7 +34,7 @@ export const Route = createFileRoute("/experience/$slug")({
 });
 
 function ExperienceDetail() {
-  const exp = Route.useLoaderData();
+  const exp = Route.useLoaderData() as ExperienceItem;
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });

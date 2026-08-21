@@ -3,7 +3,7 @@ import { ArrowLeft, ExternalLink, Github, Lightbulb } from "lucide-react";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/portfolio/ThemeToggle";
-import { getProjectBySlug } from "@/data/projects";
+import { getProjectBySlug, type ProjectItem } from "@/data/projects";
 import { blockSectionGenerationOnce } from "@/hooks/use-section-generating";
 import ZoomableImage from "@/components/portfolio/ZoomableImage";
 
@@ -34,7 +34,7 @@ export const Route = createFileRoute("/projects/$slug")({
 });
 
 function ProjectDetail() {
-  const project = Route.useLoaderData();
+  const project = Route.useLoaderData() as ProjectItem;
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });
