@@ -5,9 +5,51 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import StreamText from "./StreamText";
 import ProfilePhoto from "./ProfilePhoto";
 
+const GlowingStars = () => {
+  const stars = [
+    { top: "12%", left: "8%", size: 2, delay: 0 },
+    { top: "22%", right: "10%", size: 3, delay: 1.2 },
+    { top: "45%", left: "4%", size: 2, delay: 2.4 },
+    { top: "58%", right: "6%", size: 3, delay: 0.8 },
+    { bottom: "28%", left: "12%", size: 2, delay: 1.8 },
+    { bottom: "18%", right: "15%", size: 2, delay: 3.2 },
+    { top: "36%", left: "18%", size: 2, delay: 2.0 },
+  ];
+
+  return (
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+      {stars.map((star, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, scale: 0.6 }}
+          animate={{ opacity: [0.35, 0.85, 0.35], scale: [1, 1.2, 1] }}
+          transition={{
+            duration: 3 + Math.random() * 2,
+            repeat: Infinity,
+            delay: star.delay,
+            ease: "easeInOut",
+          }}
+          className="absolute rounded-full"
+          style={{
+            width: star.size,
+            height: star.size,
+            top: star.top,
+            left: star.left,
+            right: star.right,
+            bottom: star.bottom,
+            backgroundColor: "hsl(var(--accent))",
+            boxShadow: "0 0 6px 1px hsl(var(--accent) / 0.55), 0 0 14px 2px hsl(var(--accent) / 0.25)",
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center section-padding pt-28 lg:pt-32 overflow-hidden">
+      <GlowingStars />
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-10 lg:gap-12 items-start">
           {/* Text content */}
@@ -92,7 +134,7 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.9, x: 24 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-            className="order-1 lg:order-2 flex justify-center lg:justify-end lg:pt-24 md:pt-10 pt-4"
+            className="order-1 lg:order-2 flex justify-center lg:justify-end lg:pt-24 md:pt-10 pt-4 -translate-y-0.5"
           >
             <ProfilePhoto className="w-[240px] h-[240px] md:w-[300px] md:h-[300px] lg:w-[360px] lg:h-[360px]" />
 

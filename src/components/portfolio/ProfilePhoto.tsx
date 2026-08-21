@@ -29,7 +29,8 @@ export default function ProfilePhoto({ className }: ProfilePhotoProps) {
         {/* Animated bars travelling around the photo */}
         <svg
           aria-hidden="true"
-          className="pointer-events-none absolute -inset-2 h-[calc(100%+1rem)] w-[calc(100%+1rem)] overflow-visible"
+          className="pointer-events-none absolute h-[calc(100%+1rem+0.6cm)] w-[calc(100%+1rem+0.6cm)] overflow-visible"
+          style={{ inset: 'calc(-0.5rem - 0.3cm)' }}
           viewBox="0 0 100 100"
           fill="none"
         >
