@@ -49,6 +49,7 @@ const GlowingStars = () => {
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center section-padding pt-28 lg:pt-32 overflow-hidden">
+      <GlowingStars />
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-10 lg:gap-12 items-start">
           {/* Text content */}
