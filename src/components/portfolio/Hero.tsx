@@ -61,7 +61,7 @@ const Hero = () => {
               </span>
             </div>
 
-            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tight mb-10">
+            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-[0.95] tracking-tight mb-10">
               Building elegant
               <br />
               <span className="text-gradient">digital solutions</span>
