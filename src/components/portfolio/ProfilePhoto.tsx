@@ -8,17 +8,13 @@ interface ProfilePhotoProps {
 export default function ProfilePhoto({ className }: ProfilePhotoProps) {
   return (
     <div className={`relative ${className ?? ""}`}>
-      {/* Decorative background glow */}
-      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-accent/20 to-primary/20 blur-2xl" />
-      
-      {/* Outer ring with animated gradient */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-        className="relative aspect-square w-full rounded-full p-1.5 bg-gradient-to-br from-border via-card to-border"
+        className="relative aspect-square w-full"
       >
-        <div className="relative h-full w-full rounded-full overflow-hidden border-2 border-border bg-card shadow-xl shadow-accent/10">
+        <div className="relative h-full w-full rounded-full overflow-hidden">
           <img
             src={profileImage}
             alt="Vikram Udhayakumar - Gen AI Developer"
@@ -29,12 +25,34 @@ export default function ProfilePhoto({ className }: ProfilePhotoProps) {
             draggable={false}
           />
         </div>
-      </motion.div>
 
-      {/* Floating accent dots */}
-      <div className="absolute -top-1.5 -right-1.5 h-3 w-3 rounded-full bg-accent/80" />
-      <div className="absolute -bottom-1 -left-2.5 h-2.5 w-2.5 rounded-full bg-primary/60" />
-      <div className="absolute top-1/3 -left-3 h-1.5 w-1.5 rounded-full bg-muted-foreground/40" />
+        {/* Animated bars travelling around the photo */}
+        <svg
+          aria-hidden="true"
+          className="pointer-events-none absolute -inset-2 h-[calc(100%+1rem)] w-[calc(100%+1rem)] overflow-visible"
+          viewBox="0 0 100 100"
+          fill="none"
+        >
+          <circle
+            cx="50"
+            cy="50"
+            r="48"
+            pathLength="100"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            className="bar-spin-yellow profile-frame-bar-accent"
+          />
+          <circle
+            cx="50"
+            cy="50"
+            r="48"
+            pathLength="100"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            className="bar-spin-blue profile-frame-bar-contrast"
+          />
+        </svg>
+      </motion.div>
     </div>
   );
 }
