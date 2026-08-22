@@ -122,13 +122,13 @@ export const RocketCursor = () => {
       last = now;
       t += dt;
 
-      // critically damped follow (no overshoot -> no vibration)
-      const follow = 1 - Math.pow(0.0001, dt / 1000);
-      const dx = (tx - px) * follow;
-      const dy = (ty - py) * follow;
-      px += dx;
-      py += dy;
-      // velocity in px per 16.67ms frame, smoothed
+      // 1:1 pointer tracking (no lag), velocity only drives the flame
+      const prevX = px;
+      const prevY = py;
+      px = tx;
+      py = ty;
+      const dx = px - prevX;
+      const dy = py - prevY;
       const instVx = (dx / dt) * 16.67;
       const instVy = (dy / dt) * 16.67;
       const vSmooth = 1 - Math.pow(0.02, dt / 1000);
@@ -136,17 +136,13 @@ export const RocketCursor = () => {
       vy += (instVy - vy) * vSmooth;
 
       const speed = Math.hypot(vx, vy);
-      if (speed > 0.8) {
-        const target = Math.atan2(vy, vx);
-        let diff = target - angle;
-        while (diff > Math.PI) diff -= TAU;
-        while (diff < -Math.PI) diff += TAU;
-        angle += diff * Math.min(1, 0.008 * dt);
-      }
+      // fixed orientation: rocket points to the top-right like the default arrow
+      angle = -Math.PI / 4;
 
       // thrust eases in on movement, idles low at rest
       const targetThrust = Math.min(1, speed / 14);
       thrust += (targetThrust - thrust) * Math.min(1, 0.01 * dt);
+
 
       const cos = Math.cos(angle);
       const sin = Math.sin(angle);
@@ -298,7 +294,6 @@ export const RocketCursor = () => {
           {/* fins */}
           <path d="M26 30 L14 14 L14 28 Z" fill="url(#rc-fin)" />
           <path d="M26 34 L14 50 L14 36 Z" fill="url(#rc-fin)" />
-          <path d="M46 28 L58 16 L48 32 Z" fill="url(#rc-fin)" opacity="0.95" />
 
           {/* nozzle */}
           <path d="M12 27 h10 v10 h-10 a3 3 0 0 1 0 -10 Z" fill="url(#rc-nozzle)" />
@@ -321,12 +316,9 @@ export const RocketCursor = () => {
           <circle cx="38" cy="32" r="4.4" fill="url(#rc-glass)" />
           <circle cx="36.4" cy="30.4" r="1.3" fill="#ffffff" opacity="0.85" />
 
-          {/* stripe along the top of the body */}
-          <path
-            d="M22 25.6 h18 c5.2 0 9.8 1.2 13.4 2.9 h-4.6 c-3.2 -1.1 -6.4 -1.6 -8.8 -1.6 H22 Z"
-            fill="#1f8bea"
-            opacity="0.9"
-          />
+          {/* blue nose cone at the tip */}
+          <path d="M48 26.4 c8 1.6 13 4.4 14 5.6 -1 1.2 -6 4 -14 5.6 c3 -2 4.4 -3.8 4.4 -5.6 s-1.4 -3.6 -4.4 -5.6 Z" fill="url(#rc-fin)" />
+
         </svg>
       </div>
     </div>
