@@ -184,8 +184,8 @@ export const RocketCursor = () => {
           const a = trail[i]!;
           const b = trail[i - 1]!;
           const k = i / trail.length;
-          ctx.strokeStyle = `hsla(28, 100%, 62%, ${0.14 * k * a})`;
-          ctx.lineWidth = 8 * k * a;
+          ctx.strokeStyle = `hsla(28, 100%, 62%, ${0.14 * k * a.a})`;
+          ctx.lineWidth = 8 * k * a.a;
           ctx.lineCap = "round";
           ctx.beginPath();
           ctx.moveTo(b.x, b.y);

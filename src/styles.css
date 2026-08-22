@@ -533,3 +533,9 @@
     animation: none;
   }
 }
+
+/* Rocket cursor: hide the native cursor while the rocket cursor is active */
+.rocket-cursor-active,
+.rocket-cursor-active * {
+  cursor: none !important;
+}
