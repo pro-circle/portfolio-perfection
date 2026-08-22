@@ -163,6 +163,7 @@ function RootComponent() {
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        <RocketCursor />
         <Outlet />
       </TooltipProvider>
     </QueryClientProvider>
