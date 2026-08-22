@@ -122,23 +122,26 @@ export const RocketCursor = () => {
       last = now;
       t += dt;
 
-      // spring physics toward the pointer
-      const stiffness = 0.022;
-      const damping = 0.78;
-      vx += (tx - px) * stiffness * dt;
-      vy += (ty - py) * stiffness * dt;
-      vx *= Math.pow(damping, dt / 16.67);
-      vy *= Math.pow(damping, dt / 16.67);
-      px += vx * (dt / 16.67) * 0.5;
-      py += vy * (dt / 16.67) * 0.5;
+      // critically damped follow (no overshoot -> no vibration)
+      const follow = 1 - Math.pow(0.0001, dt / 1000);
+      const dx = (tx - px) * follow;
+      const dy = (ty - py) * follow;
+      px += dx;
+      py += dy;
+      // velocity in px per 16.67ms frame, smoothed
+      const instVx = (dx / dt) * 16.67;
+      const instVy = (dy / dt) * 16.67;
+      const vSmooth = 1 - Math.pow(0.02, dt / 1000);
+      vx += (instVx - vx) * vSmooth;
+      vy += (instVy - vy) * vSmooth;
 
       const speed = Math.hypot(vx, vy);
-      if (speed > 0.35) {
+      if (speed > 0.8) {
         const target = Math.atan2(vy, vx);
         let diff = target - angle;
         while (diff > Math.PI) diff -= TAU;
         while (diff < -Math.PI) diff += TAU;
-        angle += diff * Math.min(1, 0.014 * dt);
+        angle += diff * Math.min(1, 0.008 * dt);
       }
 
       // thrust eases in on movement, idles low at rest
@@ -318,8 +321,12 @@ export const RocketCursor = () => {
           <circle cx="38" cy="32" r="4.4" fill="url(#rc-glass)" />
           <circle cx="36.4" cy="30.4" r="1.3" fill="#ffffff" opacity="0.85" />
 
-          {/* stripe */}
-          <rect x="22" y="31" width="18" height="1.8" rx="0.9" fill="#1f8bea" opacity="0.9" />
+          {/* stripe along the top of the body */}
+          <path
+            d="M22 25.6 h18 c5.2 0 9.8 1.2 13.4 2.9 h-4.6 c-3.2 -1.1 -6.4 -1.6 -8.8 -1.6 H22 Z"
+            fill="#1f8bea"
+            opacity="0.9"
+          />
         </svg>
       </div>
     </div>
