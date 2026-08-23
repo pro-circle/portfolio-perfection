@@ -136,8 +136,14 @@ export const RocketCursor = () => {
       vy += (instVy - vy) * vSmooth;
 
       const speed = Math.hypot(vx, vy);
-      // fixed orientation: rocket points to the top-right like the default arrow
-      angle = -Math.PI / 4;
+      // aim along travel direction; snap back quickly to the traditional
+      // top-left resting angle when the pointer stops
+      const restAngle = -Math.PI * 0.75;
+      const targetAngle = speed > 1.2 ? Math.atan2(vy, vx) : restAngle;
+      let diff = targetAngle - angle;
+      while (diff > Math.PI) diff -= TAU;
+      while (diff < -Math.PI) diff += TAU;
+      angle += diff * Math.min(1, (speed > 1.2 ? 0.02 : 0.035) * dt);
 
       // thrust eases in on movement, idles low at rest
       const targetThrust = Math.min(1, speed / 14);
@@ -146,9 +152,10 @@ export const RocketCursor = () => {
 
       const cos = Math.cos(angle);
       const sin = Math.sin(angle);
-      // exhaust nozzle sits behind the rocket body
-      const ex = px - cos * 15;
-      const ey = py - sin * 15;
+      // the rocket tip sits on the pointer, so the nozzle is ~30px behind it
+      const ex = px - cos * 30;
+      const ey = py - sin * 30;
+
 
       // motion trail
       if (thrust > 0.12) {
@@ -247,7 +254,9 @@ export const RocketCursor = () => {
 
       ctx.globalCompositeOperation = "source-over";
 
-      rocket.style.transform = `translate3d(${px}px, ${py}px, 0) translate(-50%, -50%) rotate(${angle}rad)`;
+      // rotate first, then pull the body back so the nose lands on the pointer
+      rocket.style.transform = `translate3d(${px}px, ${py}px, 0) rotate(${angle}rad) translate(-50%, -50%) translate(-17px, 0)`;
+
     };
     raf = requestAnimationFrame(frame);
 

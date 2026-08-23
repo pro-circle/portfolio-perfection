@@ -4,6 +4,8 @@ import { ArrowDown, BookOpen, Github, Linkedin } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import StreamText from "./StreamText";
 import ProfilePhoto from "./ProfilePhoto";
+import NameRocket from "./NameRocket";
+
 
 const GlowingStars = () => {
   const stars = [
@@ -67,7 +69,9 @@ const Hero = () => {
                 className="font-display text-3xl md:text-5xl font-medium tracking-tight text-foreground mb-3"
               >
                 Vikram Udhayakumar
+                <NameRocket />
               </motion.h2>
+
               <p className="text-sm font-medium tracking-widest uppercase">
                 <span className="shimmer-text">Gen AI Developer</span>
               </p>
@@ -134,7 +138,7 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.9, x: 24 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-            className="order-1 lg:order-2 flex justify-center lg:justify-end lg:pt-24 md:pt-10 pt-4 -translate-y-0.5"
+            className="order-1 lg:order-2 flex justify-center lg:justify-end lg:pt-24 md:pt-10 pt-4 -translate-y-1"
           >
             <ProfilePhoto className="w-[240px] h-[240px] md:w-[300px] md:h-[300px] lg:w-[360px] lg:h-[360px]" />
 
