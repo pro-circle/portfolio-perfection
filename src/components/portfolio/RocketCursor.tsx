@@ -254,7 +254,9 @@ export const RocketCursor = () => {
 
       ctx.globalCompositeOperation = "source-over";
 
-      rocket.style.transform = `translate3d(${px}px, ${py}px, 0) translate(-50%, -50%) rotate(${angle}rad)`;
+      // rotate first, then pull the body back so the nose lands on the pointer
+      rocket.style.transform = `translate3d(${px}px, ${py}px, 0) rotate(${angle}rad) translate(-50%, -50%) translate(-17px, 0)`;
+
     };
     raf = requestAnimationFrame(frame);
 
