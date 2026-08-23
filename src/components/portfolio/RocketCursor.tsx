@@ -14,9 +14,10 @@ type Particle = {
 const TAU = Math.PI * 2;
 
 /**
- * Rocket mouse cursor: 3D-styled rocket SVG that turns toward the direction of
- * travel, with a spring-smoothed flame, motion trails, spark particles and a
- * glowing exhaust rendered on a canvas at display refresh rate (up to 120 FPS).
+ * Rocket mouse cursor: 3D-styled rocket SVG that stays fixed pointing to the
+ * top-left (like a traditional cursor arrow). The rocket tip is the cursor tip,
+ * with a spring-smoothed flame, motion trails, spark particles and a glowing
+ * exhaust rendered on a canvas at display refresh rate (up to 120 FPS).
  */
 export const RocketCursor = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -52,16 +53,21 @@ export const RocketCursor = () => {
     resize();
     window.addEventListener("resize", resize);
 
-    // Pointer target + spring-followed rocket position
+    // Pointer target + rocket position
     let tx = w / 2;
     let ty = h / 2;
     let px = tx;
     let py = ty;
     let vx = 0;
     let vy = 0;
-    let angle = -Math.PI / 4;
     let thrust = 0;
     let visible = false;
+
+    // Rocket always points top-left; tip distance from element center (px).
+    const angle = -Math.PI * 0.75;
+    const tipDistance = 17.8;
+    const tipX = Math.cos(angle) * tipDistance;
+    const tipY = Math.sin(angle) * tipDistance;
 
     const onMove = (e: PointerEvent) => {
       tx = e.clientX;
@@ -136,26 +142,16 @@ export const RocketCursor = () => {
       vy += (instVy - vy) * vSmooth;
 
       const speed = Math.hypot(vx, vy);
-      // aim along travel direction; snap back quickly to the traditional
-      // top-left resting angle when the pointer stops
-      const restAngle = -Math.PI * 0.75;
-      const targetAngle = speed > 1.2 ? Math.atan2(vy, vx) : restAngle;
-      let diff = targetAngle - angle;
-      while (diff > Math.PI) diff -= TAU;
-      while (diff < -Math.PI) diff += TAU;
-      angle += diff * Math.min(1, (speed > 1.2 ? 0.02 : 0.035) * dt);
 
       // thrust eases in on movement, idles low at rest
       const targetThrust = Math.min(1, speed / 14);
       thrust += (targetThrust - thrust) * Math.min(1, 0.01 * dt);
-
 
       const cos = Math.cos(angle);
       const sin = Math.sin(angle);
       // the rocket tip sits on the pointer, so the nozzle is ~30px behind it
       const ex = px - cos * 30;
       const ey = py - sin * 30;
-
 
       // motion trail
       if (thrust > 0.12) {
@@ -254,9 +250,8 @@ export const RocketCursor = () => {
 
       ctx.globalCompositeOperation = "source-over";
 
-      // rotate first, then pull the body back so the nose lands on the pointer
-      rocket.style.transform = `translate3d(${px}px, ${py}px, 0) rotate(${angle}rad) translate(-50%, -50%) translate(-17px, 0)`;
-
+      // keep the rocket fixed pointing top-left; offset so the nose tip lands exactly on the pointer
+      rocket.style.transform = `translate3d(${px - tipX}px, ${py - tipY}px, 0) rotate(${angle}rad) translate(-50%, -50%)`;
     };
     raf = requestAnimationFrame(frame);
 
@@ -278,7 +273,7 @@ export const RocketCursor = () => {
         ref={rocketRef}
         className="absolute left-0 top-0 opacity-0 transition-opacity duration-200 will-change-transform"
       >
-        {/* rocket points to +X so rotation matches the travel direction */}
+        {/* rocket points to +X; rotated -135° it points to the top-left like a traditional cursor */}
         <svg width="38" height="38" viewBox="0 0 64 64" fill="none">
           <defs>
             <linearGradient id="rc-body" x1="0" y1="18" x2="0" y2="46" gradientUnits="userSpaceOnUse">
