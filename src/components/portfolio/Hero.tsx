@@ -138,7 +138,7 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.9, x: 24 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-            className="order-1 lg:order-2 flex justify-center lg:justify-end lg:pt-24 md:pt-10 pt-4 -translate-y-0.5"
+            className="order-1 lg:order-2 flex justify-center lg:justify-end lg:pt-24 md:pt-10 pt-4 -translate-y-1"
           >
             <ProfilePhoto className="w-[240px] h-[240px] md:w-[300px] md:h-[300px] lg:w-[360px] lg:h-[360px]" />
 
