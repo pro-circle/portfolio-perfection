@@ -14,10 +14,10 @@ type Particle = {
 const TAU = Math.PI * 2;
 
 /**
- * Rocket mouse cursor: 3D-styled rocket SVG that stays fixed pointing to the
- * top-left (like a traditional cursor arrow). The rocket tip is the cursor tip,
- * with a spring-smoothed flame, motion trails, spark particles and a glowing
- * exhaust rendered on a canvas at display refresh rate (up to 120 FPS).
+ * Rocket mouse cursor: 3D-styled rocket SVG that stays fixed pointing slightly
+ * above the top-left (like a traditional cursor arrow). The rocket tip is the
+ * cursor tip, with a spring-smoothed flame, motion trails, spark particles and a
+ * glowing exhaust rendered on a canvas at display refresh rate (up to 120 FPS).
  */
 export const RocketCursor = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
