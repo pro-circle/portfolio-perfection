@@ -63,8 +63,9 @@ export const RocketCursor = () => {
     let thrust = 0;
     let visible = false;
 
-    // Rocket always points top-left; tip distance from element center (px).
-    const angle = -Math.PI * 0.75;
+    // Rocket points slightly above the top-left diagonal, like a traditional
+    // cursor arrow but angled a touch toward the right/up.
+    const angle = -Math.PI * 0.62;
     const tipDistance = 17.8;
     const tipX = Math.cos(angle) * tipDistance;
     const tipY = Math.sin(angle) * tipDistance;
