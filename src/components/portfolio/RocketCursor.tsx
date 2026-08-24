@@ -14,10 +14,10 @@ type Particle = {
 const TAU = Math.PI * 2;
 
 /**
- * Rocket mouse cursor: 3D-styled rocket SVG that stays fixed pointing to the
- * top-left (like a traditional cursor arrow). The rocket tip is the cursor tip,
- * with a spring-smoothed flame, motion trails, spark particles and a glowing
- * exhaust rendered on a canvas at display refresh rate (up to 120 FPS).
+ * Rocket mouse cursor: 3D-styled rocket SVG that stays fixed pointing slightly
+ * above the top-left (like a traditional cursor arrow). The rocket tip is the
+ * cursor tip, with a spring-smoothed flame, motion trails, spark particles and a
+ * glowing exhaust rendered on a canvas at display refresh rate (up to 120 FPS).
  */
 export const RocketCursor = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -63,8 +63,9 @@ export const RocketCursor = () => {
     let thrust = 0;
     let visible = false;
 
-    // Rocket always points top-left; tip distance from element center (px).
-    const angle = -Math.PI * 0.75;
+    // Rocket points slightly above the top-left diagonal, like a traditional
+    // cursor arrow but angled a touch toward the right/up.
+    const angle = -Math.PI * 0.62;
     const tipDistance = 17.8;
     const tipX = Math.cos(angle) * tipDistance;
     const tipY = Math.sin(angle) * tipDistance;
@@ -277,7 +278,7 @@ export const RocketCursor = () => {
         style={{ width: 38, height: 38, marginLeft: -19, marginTop: -19 }}
         className="absolute left-0 top-0 opacity-0 transition-opacity duration-200 will-change-transform"
       >
-        {/* rocket points to +X; rotated -135° it points to the top-left like a traditional cursor */}
+        {/* rocket points to +X; rotated ~-112° it points above top-left like a traditional cursor */}
         <svg width="38" height="38" viewBox="0 0 64 64" fill="none">
           <defs>
             <linearGradient id="rc-body" x1="0" y1="18" x2="0" y2="46" gradientUnits="userSpaceOnUse">
