@@ -253,7 +253,7 @@ export const RocketCursor = () => {
       // keep the rocket fixed pointing top-left; scaleY(-1) prevents the >90deg
       // rotation from rendering the rocket upside down, and the offset puts the
       // nose tip exactly on the pointer
-      rocket.style.transform = `translate3d(${px - tipX}px, ${py - tipY}px, 0) rotate(${angle}rad) translate(-50%, -50%) scaleY(-1)`;
+      rocket.style.transform = `translate3d(${px - tipX}px, ${py - tipY}px, 0) rotate(${angle}rad) scaleY(-1) translate(-50%, -50%)`;
     };
     raf = requestAnimationFrame(frame);
 
