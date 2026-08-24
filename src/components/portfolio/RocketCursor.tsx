@@ -274,6 +274,7 @@ export const RocketCursor = () => {
       <canvas ref={canvasRef} className="absolute inset-0" />
       <div
         ref={rocketRef}
+        style={{ width: 38, height: 38, marginLeft: -19, marginTop: -19 }}
         className="absolute left-0 top-0 opacity-0 transition-opacity duration-200 will-change-transform"
       >
         {/* rocket points to +X; rotated -135° it points to the top-left like a traditional cursor */}
