@@ -70,19 +70,6 @@ export const RocketCursor = () => {
     const tipX = Math.cos(angle) * tipDistance;
     const tipY = Math.sin(angle) * tipDistance;
 
-    // On load the rocket rests on the hero dock spot (next to the name) until
-    // the visitor moves the pointer, after which it behaves as the cursor.
-    const dock = document.getElementById("rocket-dock");
-    if (dock) {
-      const r = dock.getBoundingClientRect();
-      tx = r.left + r.width / 2 + tipX;
-      ty = r.top + r.height / 2 + tipY;
-      px = tx;
-      py = ty;
-      visible = true;
-      rocket.style.opacity = "1";
-    }
-
     const onMove = (e: PointerEvent) => {
       tx = e.clientX;
       ty = e.clientY;
@@ -93,7 +80,6 @@ export const RocketCursor = () => {
         rocket.style.opacity = "1";
       }
     };
-
     const onLeave = () => {
       visible = false;
       rocket.style.opacity = "0";
@@ -285,7 +271,7 @@ export const RocketCursor = () => {
   }, []);
 
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 z-[2147483647] hidden md:block">
+    <div aria-hidden className="pointer-events-none fixed inset-0 z-[10000] hidden md:block">
       <canvas ref={canvasRef} className="absolute inset-0" />
       <div
         ref={rocketRef}
