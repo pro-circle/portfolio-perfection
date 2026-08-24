@@ -278,7 +278,7 @@ export const RocketCursor = () => {
         style={{ width: 38, height: 38, marginLeft: -19, marginTop: -19 }}
         className="absolute left-0 top-0 opacity-0 transition-opacity duration-200 will-change-transform"
       >
-        {/* rocket points to +X; rotated -135° it points to the top-left like a traditional cursor */}
+        {/* rocket points to +X; rotated ~-112° it points above top-left like a traditional cursor */}
         <svg width="38" height="38" viewBox="0 0 64 64" fill="none">
           <defs>
             <linearGradient id="rc-body" x1="0" y1="18" x2="0" y2="46" gradientUnits="userSpaceOnUse">
