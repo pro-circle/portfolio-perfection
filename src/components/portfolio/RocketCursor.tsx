@@ -250,10 +250,11 @@ export const RocketCursor = () => {
 
       ctx.globalCompositeOperation = "source-over";
 
-      // keep the rocket fixed pointing top-left; scaleY(-1) prevents the >90deg
-      // rotation from rendering the rocket upside down, and the offset puts the
-      // nose tip exactly on the pointer
-      rocket.style.transform = `translate3d(${px - tipX}px, ${py - tipY}px, 0) rotate(${angle}rad) translate(-50%, -50%) scaleY(-1)`;
+      // The wrapper is pre-centred with negative margins, so the element centre
+      // sits at the translate3d point. Offsetting by the tip vector puts the
+      // nose tip exactly on the pointer; scaleY(-1) keeps the mirrored rocket
+      // right-side up while pointing top-left.
+      rocket.style.transform = `translate3d(${px - tipX}px, ${py - tipY}px, 0) rotate(${angle}rad) scaleY(-1)`;
     };
     raf = requestAnimationFrame(frame);
 
@@ -273,6 +274,7 @@ export const RocketCursor = () => {
       <canvas ref={canvasRef} className="absolute inset-0" />
       <div
         ref={rocketRef}
+        style={{ width: 38, height: 38, marginLeft: -19, marginTop: -19 }}
         className="absolute left-0 top-0 opacity-0 transition-opacity duration-200 will-change-transform"
       >
         {/* rocket points to +X; rotated -135° it points to the top-left like a traditional cursor */}
