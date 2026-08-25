@@ -4,7 +4,7 @@ import { ArrowDown, BookOpen, Github, Linkedin } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import StreamText from "./StreamText";
 import ProfilePhoto from "./ProfilePhoto";
-import NameRocket from "./NameRocket";
+
 
 
 const GlowingStars = () => {
