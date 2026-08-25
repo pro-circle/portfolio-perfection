@@ -59,8 +59,13 @@ const skillGroups = [
   },
 ];
 
-/** simple-icons slugs for the official brand logos shown on hover. */
-const skillLogos: Record<string, { slug: string; dark?: boolean }> = {
+/**
+ * Official brand logos shown on hover.
+ * To add a future skill logo: add the exact skill label here and set its Simple Icons slug.
+ * If cdn.simpleicons.org does not serve that slug, add a jsDelivr `url` override using
+ * `https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/{slug}.svg`.
+ */
+const skillLogos: Record<string, { slug: string; dark?: boolean; url?: string }> = {
   Python: { slug: "python" },
   SQL: { slug: "mysql" },
   Bash: { slug: "gnubash", dark: true },
@@ -73,11 +78,19 @@ const skillLogos: Record<string, { slug: string; dark?: boolean }> = {
   Linux: { slug: "linux", dark: true },
   PostgreSQL: { slug: "postgresql" },
   MongoDB: { slug: "mongodb" },
-  PowerBI: { slug: "powerbi" },
+  PowerBI: {
+    slug: "powerbi",
+    dark: true,
+    url: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/powerbi.svg",
+  },
   Tensorflow: { slug: "tensorflow" },
   "Scikit-learn": { slug: "scikitlearn" },
   n8n: { slug: "n8n" },
-  "OpenAI API": { slug: "openai", dark: true },
+  "OpenAI API": {
+    slug: "openai",
+    dark: true,
+    url: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg",
+  },
   Ollama: { slug: "ollama", dark: true },
   "Hugging Face": { slug: "huggingface" },
   "Node.js": { slug: "nodedotjs" },
@@ -144,7 +157,11 @@ const Skills = () => {
                   />
                 </h3>
                 <div className="space-y-2">
-                  {group.skills.map((skill, si) => (
+                  {group.skills.map((skill, si) => {
+                    const logo = skillLogos[skill];
+                    const logoSrc = logo?.url ?? (logo ? `https://cdn.simpleicons.org/${logo.slug}` : undefined);
+
+                    return (
                     <HoverCard key={skill} openDelay={120} closeDelay={80}>
                       <HoverCardTrigger asChild>
                         <div className="relative block text-muted-foreground text-lg hover:text-accent-hover transition-colors text-left group cursor-default">
@@ -157,14 +174,14 @@ const Skills = () => {
                             />
                             <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-accent group-hover:w-full transition-all duration-300" />
                           </span>
-                          {skillLogos[skill] && (
+                          {logoSrc && (
                             <img
-                              src={`https://cdn.simpleicons.org/${skillLogos[skill].slug}`}
+                              src={logoSrc}
                               alt={`${skill} logo`}
                               loading="lazy"
                               decoding="async"
                               className={`pointer-events-none absolute left-0 top-1/2 h-7 w-auto -translate-y-1/2 opacity-0 transition-opacity duration-200 group-hover:opacity-100 ${
-                                skillLogos[skill].dark ? "dark:brightness-0 dark:invert" : ""
+                                logo?.dark ? "dark:brightness-0 dark:invert" : ""
                               }`}
                             />
                           )}
@@ -187,7 +204,8 @@ const Skills = () => {
                         </div>
                       </HoverCardContent>
                     </HoverCard>
-                  ))}
+                  );
+                  })}
                 </div>
               </div>
             ))}
