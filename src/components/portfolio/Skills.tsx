@@ -59,11 +59,36 @@ const skillGroups = [
   },
 ];
 
+/** simple-icons slugs for the official brand logos shown on hover. */
+const skillLogos: Record<string, { slug: string; dark?: boolean }> = {
+  Python: { slug: "python" },
+  SQL: { slug: "mysql" },
+  Bash: { slug: "gnubash", dark: true },
+  "Fast API": { slug: "fastapi" },
+  Flask: { slug: "flask", dark: true },
+  Supabase: { slug: "supabase" },
+  Firebase: { slug: "firebase" },
+  Docker: { slug: "docker" },
+  "CI/CD": { slug: "githubactions" },
+  Linux: { slug: "linux", dark: true },
+  PostgreSQL: { slug: "postgresql" },
+  MongoDB: { slug: "mongodb" },
+  PowerBI: { slug: "powerbi" },
+  Tensorflow: { slug: "tensorflow" },
+  "Scikit-learn": { slug: "scikitlearn" },
+  n8n: { slug: "n8n" },
+  "OpenAI API": { slug: "openai", dark: true },
+  Ollama: { slug: "ollama", dark: true },
+  "Hugging Face": { slug: "huggingface" },
+  "Node.js": { slug: "nodedotjs" },
+};
+
 const resumePages = [
   "/images/resume/page-1.jpg",
   "/images/resume/page-2.jpg",
   "/images/resume/page-3.jpg",
 ];
+
 
 const Skills = () => {
   const [showResume, setShowResume] = useState(false);
