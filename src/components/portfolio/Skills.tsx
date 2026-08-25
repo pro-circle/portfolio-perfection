@@ -147,8 +147,8 @@ const Skills = () => {
                   {group.skills.map((skill, si) => (
                     <HoverCard key={skill} openDelay={120} closeDelay={80}>
                       <HoverCardTrigger asChild>
-                        <div className="block text-muted-foreground text-lg hover:text-accent-hover transition-colors text-left group cursor-default">
-                          <span className="relative inline-block">
+                        <div className="relative block text-muted-foreground text-lg hover:text-accent-hover transition-colors text-left group cursor-default">
+                          <span className="relative inline-block transition-opacity duration-200 group-hover:opacity-0">
                             <StreamText
                               start={phase === "ready"}
                               startDelayMs={gi * 120 + 180 + si * 90}
@@ -157,7 +157,19 @@ const Skills = () => {
                             />
                             <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-accent group-hover:w-full transition-all duration-300" />
                           </span>
+                          {skillLogos[skill] && (
+                            <img
+                              src={`https://cdn.simpleicons.org/${skillLogos[skill].slug}`}
+                              alt={`${skill} logo`}
+                              loading="lazy"
+                              decoding="async"
+                              className={`pointer-events-none absolute left-0 top-1/2 h-7 w-auto -translate-y-1/2 opacity-0 transition-opacity duration-200 group-hover:opacity-100 ${
+                                skillLogos[skill].dark ? "dark:brightness-0 dark:invert" : ""
+                              }`}
+                            />
+                          )}
                         </div>
+
                       </HoverCardTrigger>
                       <HoverCardContent
                         className="w-80 border-border shadow-xl"
