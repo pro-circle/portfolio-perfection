@@ -4,7 +4,7 @@ import { ArrowDown, BookOpen, Github, Linkedin } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import StreamText from "./StreamText";
 import ProfilePhoto from "./ProfilePhoto";
-import NameRocket from "./NameRocket";
+
 
 
 const GlowingStars = () => {
@@ -69,8 +69,10 @@ const Hero = () => {
                 className="font-display text-3xl md:text-5xl font-medium tracking-tight text-foreground mb-3"
               >
                 Vikram Udhayakumar
-                <NameRocket />
               </motion.h2>
+
+
+
 
               <p className="text-sm font-medium tracking-widest uppercase">
                 <span className="shimmer-text">Gen AI Developer</span>

@@ -271,7 +271,7 @@ export const RocketCursor = () => {
   }, []);
 
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 z-[10000] hidden md:block">
+    <div aria-hidden className="pointer-events-none fixed inset-0 hidden md:block" style={{ zIndex: 2147483000 }}>
       <canvas ref={canvasRef} className="absolute inset-0" />
       <div
         ref={rocketRef}

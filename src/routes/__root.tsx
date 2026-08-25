@@ -15,6 +15,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { RocketCursor } from "@/components/portfolio/RocketCursor";
+import { ClickSparkle } from "@/components/portfolio/ClickSparkle";
+
 
 
 function NotFoundComponent() {
@@ -164,6 +166,8 @@ function RootComponent() {
         <Toaster />
         <Sonner />
         <RocketCursor />
+        <ClickSparkle />
+
         <Outlet />
       </TooltipProvider>
     </QueryClientProvider>
