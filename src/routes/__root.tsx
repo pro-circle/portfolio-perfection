@@ -164,6 +164,8 @@ function RootComponent() {
         <Toaster />
         <Sonner />
         <RocketCursor />
+        <ClickSparkle />
+
         <Outlet />
       </TooltipProvider>
     </QueryClientProvider>
