@@ -69,6 +69,9 @@ const Hero = () => {
                 className="font-display text-3xl md:text-5xl font-medium tracking-tight text-foreground mb-3"
               >
                 Vikram Udhayakumar
+              </motion.h2>
+
+
 
 
               <p className="text-sm font-medium tracking-widest uppercase">
